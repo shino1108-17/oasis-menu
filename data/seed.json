@@ -1,0 +1,581 @@
+{
+  "items": [
+    {
+      "id": "50cebb53-90f7-53f0-8f2b-5c070aa03c2e",
+      "sort_order": 1,
+      "category": "rice",
+      "name": {
+        "ja": "オアシスカレー",
+        "en": "OASIS Curry",
+        "zh": "OASIS咖喱饭",
+        "ko": "오아시스 카레",
+        "vi": "Cơm cà ri OASIS",
+        "id": "Kari OASIS"
+      },
+      "description": {
+        "ja": "オアシス定番のカレーライス。",
+        "en": "OASIS's signature curry and rice.",
+        "zh": "OASIS招牌咖喱饭。",
+        "ko": "오아시스의 대표 카레라이스.",
+        "vi": "Cơm cà ri đặc trưng của OASIS.",
+        "id": "Nasi kari andalan OASIS."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "contains",
+        "soybean": "contains",
+        "chicken": "contains",
+        "beef": "contains",
+        "pork": "contains",
+        "banana": "contains",
+        "apple": "contains",
+        "sesame": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "68e72c23-3146-58a3-a992-435c82a34067",
+      "sort_order": 2,
+      "category": "rice",
+      "name": {
+        "ja": "チキン南蛮風ライス",
+        "en": "Chicken Nanban-style Rice",
+        "zh": "南蛮风味炸鸡饭",
+        "ko": "치킨 난반풍 라이스",
+        "vi": "Cơm gà kiểu Nanban",
+        "id": "Nasi Ayam ala Nanban"
+      },
+      "description": {
+        "ja": "甘酢をからめた鶏の唐揚げにタルタルソースをのせたご飯。",
+        "en": "Rice topped with fried chicken in sweet vinegar sauce and tartar sauce.",
+        "zh": "淋上甜醋汁的炸鸡配塔塔酱盖饭。",
+        "ko": "새콤달콤한 소스를 입힌 닭튀김에 타르타르 소스를 올린 덮밥.",
+        "vi": "Cơm với gà chiên sốt chua ngọt và sốt tartar.",
+        "id": "Nasi dengan ayam goreng saus asam manis dan saus tartar."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "contains",
+        "milk": "contains",
+        "soybean": "contains",
+        "chicken": "contains",
+        "beef": "contains",
+        "gelatin": "contains",
+        "sesame": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "b23b19e9-8ecd-5436-a8a8-2d2bf4423305",
+      "sort_order": 3,
+      "category": "ramen",
+      "name": {
+        "ja": "博多ラーメン",
+        "en": "Hakata Ramen",
+        "zh": "博多拉面",
+        "ko": "하카타 라멘",
+        "vi": "Mì ramen Hakata",
+        "id": "Ramen Hakata"
+      },
+      "description": {
+        "ja": "豚骨スープに細麺の福岡名物ラーメン。",
+        "en": "Fukuoka's famous ramen: thin noodles in rich pork-bone broth.",
+        "zh": "福冈名产，浓郁猪骨汤配细面。",
+        "ko": "진한 돼지뼈 육수에 가는 면을 넣은 후쿠오카 명물 라멘.",
+        "vi": "Món ramen nổi tiếng của Fukuoka: sợi mì mảnh trong nước dùng xương lợn.",
+        "id": "Ramen khas Fukuoka: mi tipis dalam kuah tulang babi yang kental."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "contains",
+        "milk": "contains",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "chicken": "contains",
+        "pork": "contains",
+        "gelatin": "contains",
+        "sesame": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "4df4fac6-c8eb-5097-b58e-fb0e2e4ea3ec",
+      "sort_order": 4,
+      "category": "ramen",
+      "name": {
+        "ja": "醤油ラーメン",
+        "en": "Shoyu (Soy Sauce) Ramen",
+        "zh": "酱油拉面",
+        "ko": "쇼유(간장) 라멘",
+        "vi": "Mì ramen xì dầu",
+        "id": "Ramen Shoyu (Kecap Asin)"
+      },
+      "description": {
+        "ja": "醤油ベースのすっきりしたスープのラーメン。",
+        "en": "Ramen in a light soy-sauce-based broth.",
+        "zh": "清爽酱油汤底拉面。",
+        "ko": "깔끔한 간장 베이스 국물의 라멘.",
+        "vi": "Ramen với nước dùng nền xì dầu thanh nhẹ.",
+        "id": "Ramen dengan kuah berbahan dasar kecap asin yang ringan."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "contains",
+        "milk": "contains",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "chicken": "contains",
+        "pork": "contains",
+        "gelatin": "contains",
+        "sesame": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "95418939-cad9-53e1-bc17-58b95a1d0c9c",
+      "sort_order": 5,
+      "category": "ramen",
+      "name": {
+        "ja": "唐揚げ味噌ラーメン",
+        "en": "Miso Ramen with Karaage",
+        "zh": "日式炸鸡味噌拉面",
+        "ko": "가라아게 미소 라멘",
+        "vi": "Mì ramen miso gà chiên Karaage",
+        "id": "Ramen Miso dengan Karaage"
+      },
+      "description": {
+        "ja": "味噌スープのラーメンに鶏の唐揚げをトッピング。",
+        "en": "Miso ramen topped with Japanese fried chicken (karaage).",
+        "zh": "味噌拉面配日式炸鸡块。",
+        "ko": "미소 라멘에 닭튀김(가라아게)을 올렸습니다.",
+        "vi": "Ramen miso kèm gà chiên kiểu Nhật (karaage).",
+        "id": "Ramen miso dengan topping ayam goreng Jepang (karaage)."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "contains",
+        "milk": "contains",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "chicken": "contains",
+        "pork": "contains",
+        "gelatin": "contains",
+        "sesame": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "cdfda5a4-c55d-5553-9e6d-9de8c89322b2",
+      "sort_order": 6,
+      "category": "udon",
+      "name": {
+        "ja": "うどん",
+        "en": "Udon",
+        "zh": "乌冬面",
+        "ko": "우동",
+        "vi": "Mì udon",
+        "id": "Udon"
+      },
+      "description": {
+        "ja": "温かいつゆのシンプルなうどん。",
+        "en": "Simple udon noodles in hot broth.",
+        "zh": "简单的清汤乌冬面。",
+        "ko": "따뜻한 국물의 기본 우동.",
+        "vi": "Mì udon đơn giản trong nước dùng nóng.",
+        "id": "Udon sederhana dengan kuah panas."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "may",
+        "milk": "may",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "mackerel": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "67512ec5-40f0-56cf-8a80-f626db167657",
+      "sort_order": 7,
+      "category": "udon",
+      "name": {
+        "ja": "肉うどん",
+        "en": "Beef Udon",
+        "zh": "牛肉乌冬面",
+        "ko": "소고기 우동",
+        "vi": "Mì udon thịt bò",
+        "id": "Udon Daging Sapi"
+      },
+      "description": {
+        "ja": "甘辛く煮た牛肉をのせたうどん。",
+        "en": "Udon topped with sweet-savory simmered beef.",
+        "zh": "配甜咸炖牛肉的乌冬面。",
+        "ko": "달콤 짭짤하게 조린 소고기를 올린 우동.",
+        "vi": "Mì udon với thịt bò hầm vị mặn ngọt.",
+        "id": "Udon dengan daging sapi rebus manis gurih."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "may",
+        "milk": "may",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "beef": "contains",
+        "mackerel": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "e2cd29e1-a84b-5a45-beeb-2bb8c89000a4",
+      "sort_order": 8,
+      "category": "udon",
+      "name": {
+        "ja": "きつねうどん",
+        "en": "Kitsune Udon (Fried Tofu)",
+        "zh": "油豆腐乌冬面",
+        "ko": "유부 우동",
+        "vi": "Mì udon đậu phụ chiên (Kitsune)",
+        "id": "Udon Kitsune (Tahu Goreng)"
+      },
+      "description": {
+        "ja": "甘く煮た油揚げをのせたうどん。",
+        "en": "Udon topped with sweet simmered fried tofu.",
+        "zh": "配甜煮油豆腐的乌冬面。",
+        "ko": "달게 조린 유부를 올린 우동.",
+        "vi": "Mì udon với đậu phụ chiên ninh ngọt.",
+        "id": "Udon dengan tahu goreng yang dimasak manis."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "may",
+        "milk": "may",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "mackerel": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "cee9364a-ed8f-5e97-82d2-5b310667f8c6",
+      "sort_order": 9,
+      "category": "udon",
+      "name": {
+        "ja": "釜揚げうどん",
+        "en": "Kamaage Udon",
+        "zh": "釜扬乌冬面",
+        "ko": "가마아게 우동",
+        "vi": "Mì udon Kamaage",
+        "id": "Udon Kamaage"
+      },
+      "description": {
+        "ja": "ゆでたてのうどんを温かいつゆにつけて食べます。",
+        "en": "Freshly boiled udon served with a warm dipping sauce.",
+        "zh": "现煮乌冬面，蘸温热酱汁食用。",
+        "ko": "갓 삶은 우동을 따뜻한 쯔유에 찍어 먹습니다.",
+        "vi": "Mì udon vừa luộc, chấm với nước sốt ấm.",
+        "id": "Udon yang baru direbus, dicelupkan ke saus hangat."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "contains",
+        "milk": "may",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "mackerel": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "1c40a742-07b3-5ab2-8175-23332025b901",
+      "sort_order": 10,
+      "category": "udon",
+      "name": {
+        "ja": "カレーうどん",
+        "en": "Curry Udon",
+        "zh": "咖喱乌冬面",
+        "ko": "카레 우동",
+        "vi": "Mì udon cà ri",
+        "id": "Udon Kari"
+      },
+      "description": {
+        "ja": "カレー風味のつゆで食べるうどん。",
+        "en": "Udon in curry-flavored broth.",
+        "zh": "咖喱汤底乌冬面。",
+        "ko": "카레 국물 우동.",
+        "vi": "Mì udon trong nước dùng vị cà ri.",
+        "id": "Udon dengan kuah rasa kari."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "may",
+        "milk": "may",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "chicken": "contains",
+        "beef": "contains",
+        "pork": "contains",
+        "banana": "contains",
+        "apple": "contains",
+        "mackerel": "contains",
+        "sesame": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "02644bdf-6364-51a0-b5fd-3907f3f67173",
+      "sort_order": 11,
+      "category": "soba",
+      "name": {
+        "ja": "そば",
+        "en": "Soba (Buckwheat Noodles)",
+        "zh": "荞麦面",
+        "ko": "소바(메밀국수)",
+        "vi": "Mì soba (kiều mạch)",
+        "id": "Soba (Mi Gandum Kuda)"
+      },
+      "description": {
+        "ja": "温かいつゆのシンプルなそば。",
+        "en": "Simple buckwheat soba noodles in hot broth.",
+        "zh": "简单的清汤荞麦面。",
+        "ko": "따뜻한 국물의 기본 소바.",
+        "vi": "Mì soba kiều mạch đơn giản trong nước dùng nóng.",
+        "id": "Soba sederhana dengan kuah panas."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "contains",
+        "milk": "may",
+        "buckwheat": "contains",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "mackerel": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "67b1efb7-a3f3-5fc3-8341-5d0b009ba198",
+      "sort_order": 12,
+      "category": "soba",
+      "name": {
+        "ja": "肉そば",
+        "en": "Beef Soba",
+        "zh": "牛肉荞麦面",
+        "ko": "소고기 소바",
+        "vi": "Mì soba thịt bò",
+        "id": "Soba Daging Sapi"
+      },
+      "description": {
+        "ja": "甘辛く煮た牛肉をのせたそば。",
+        "en": "Soba topped with sweet-savory simmered beef.",
+        "zh": "配甜咸炖牛肉的荞麦面。",
+        "ko": "달콤 짭짤하게 조린 소고기를 올린 소바.",
+        "vi": "Mì soba với thịt bò hầm vị mặn ngọt.",
+        "id": "Soba dengan daging sapi rebus manis gurih."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "may",
+        "milk": "may",
+        "buckwheat": "contains",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "beef": "contains",
+        "mackerel": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "93ed7139-1b72-58d0-90d4-e9a8128a526b",
+      "sort_order": 13,
+      "category": "soba",
+      "name": {
+        "ja": "きつねそば",
+        "en": "Kitsune Soba (Fried Tofu)",
+        "zh": "油豆腐荞麦面",
+        "ko": "유부 소바",
+        "vi": "Mì soba đậu phụ chiên (Kitsune)",
+        "id": "Soba Kitsune (Tahu Goreng)"
+      },
+      "description": {
+        "ja": "甘く煮た油揚げをのせたそば。",
+        "en": "Soba topped with sweet simmered fried tofu.",
+        "zh": "配甜煮油豆腐的荞麦面。",
+        "ko": "달게 조린 유부를 올린 소바.",
+        "vi": "Mì soba với đậu phụ chiên ninh ngọt.",
+        "id": "Soba dengan tahu goreng yang dimasak manis."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "may",
+        "milk": "may",
+        "buckwheat": "contains",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "mackerel": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "314b3399-1739-54c4-b362-d5c464ad19e3",
+      "sort_order": 14,
+      "category": "soba",
+      "name": {
+        "ja": "釜揚げそば",
+        "en": "Kamaage Soba",
+        "zh": "釜扬荞麦面",
+        "ko": "가마아게 소바",
+        "vi": "Mì soba Kamaage",
+        "id": "Soba Kamaage"
+      },
+      "description": {
+        "ja": "ゆでたてのそばを温かいつゆにつけて食べます。",
+        "en": "Freshly boiled soba served with a warm dipping sauce.",
+        "zh": "现煮荞麦面，蘸温热酱汁食用。",
+        "ko": "갓 삶은 소바을 따뜻한 쯔유에 찍어 먹습니다.",
+        "vi": "Mì soba vừa luộc, chấm với nước sốt ấm.",
+        "id": "Soba yang baru direbus, dicelupkan ke saus hangat."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "contains",
+        "milk": "may",
+        "buckwheat": "contains",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "mackerel": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    },
+    {
+      "id": "79622c5d-9247-5b07-a562-213c30992a23",
+      "sort_order": 15,
+      "category": "soba",
+      "name": {
+        "ja": "カレーそば",
+        "en": "Curry Soba",
+        "zh": "咖喱荞麦面",
+        "ko": "카레 소바",
+        "vi": "Mì soba cà ri",
+        "id": "Soba Kari"
+      },
+      "description": {
+        "ja": "カレー風味のつゆで食べるそば。",
+        "en": "Soba in curry-flavored broth.",
+        "zh": "咖喱汤底荞麦面。",
+        "ko": "카레 국물 소바.",
+        "vi": "Mì soba trong nước dùng vị cà ri.",
+        "id": "Soba dengan kuah rasa kari."
+      },
+      "price": null,
+      "image_url": "",
+      "allergens": {
+        "wheat": "contains",
+        "egg": "may",
+        "milk": "may",
+        "buckwheat": "contains",
+        "shrimp": "may",
+        "crab": "may",
+        "soybean": "contains",
+        "chicken": "contains",
+        "beef": "contains",
+        "pork": "contains",
+        "banana": "contains",
+        "apple": "contains",
+        "mackerel": "contains",
+        "sesame": "contains"
+      },
+      "is_visible": true,
+      "is_sold_out": false
+    }
+  ],
+  "settings": {
+    "hero_title": "OASIS",
+    "hero_image": "",
+    "hero_sub": {
+      "ja": "福岡工業大学 学生食堂「オアシス」のメニューとアレルギー情報",
+      "en": "Menu and allergy information for OASIS, the student cafeteria at Fukuoka Institute of Technology",
+      "zh": "福冈工业大学学生食堂「OASIS」的菜单与过敏原信息",
+      "ko": "후쿠오카공업대학 학생식당 「OASIS」의 메뉴 및 알레르기 정보",
+      "vi": "Thực đơn và thông tin dị ứng của nhà ăn sinh viên OASIS, Đại học Công nghiệp Fukuoka",
+      "id": "Menu dan informasi alergi kantin mahasiswa OASIS, Fukuoka Institute of Technology"
+    },
+    "notice": {
+      "ja": "メニューの写真は順次掲載していきます。",
+      "en": "Menu photos will be added gradually.",
+      "zh": "菜单照片将陆续上传。",
+      "ko": "메뉴 사진은 순차적으로 게재할 예정입니다.",
+      "vi": "Ảnh món ăn sẽ được cập nhật dần.",
+      "id": "Foto menu akan ditambahkan secara bertahap."
+    },
+    "hours": {
+      "ja": "",
+      "en": "",
+      "zh": "",
+      "ko": "",
+      "vi": "",
+      "id": ""
+    },
+    "disclaimer": {
+      "ja": "当店は大量調理のため、アレルギー対応が確実ではありません。アレルギー表は目安としてご覧ください。ご了承のほどよろしくお願いいたします。",
+      "en": "Because our food is prepared in large quantities, we cannot guarantee allergen control. Please use this allergy chart as a guide only.",
+      "zh": "本店为大量烹调，无法确保完全对应过敏原。过敏原表仅供参考，敬请谅解。",
+      "ko": "당점은 대량 조리를 하기 때문에 알레르기 대응을 보장할 수 없습니다. 알레르기 표는 참고용으로 봐 주십시오.",
+      "vi": "Do nấu ăn với số lượng lớn, chúng tôi không thể đảm bảo hoàn toàn về chất gây dị ứng. Vui lòng chỉ xem bảng dị ứng như thông tin tham khảo.",
+      "id": "Karena makanan dimasak dalam jumlah besar, kami tidak dapat menjamin penanganan alergen. Mohon gunakan tabel alergi ini hanya sebagai panduan."
+    }
+  }
+}

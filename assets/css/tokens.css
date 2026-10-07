@@ -1,0 +1,86 @@
+/*
+ * デザイントークン
+ * 添付の DESIGN.md（Limón スタイル）の構成をそのまま使い、
+ * 色だけを福岡工業大学のテーマカラー（公式サイト https://www.fit.ac.jp/ のCSSより）に置き換えています。
+ *
+ *   Black Olive  #1d0b0d → FIT Navy  #001242（ページ・ヒーロー・フッターの濃色面）
+ *   Forest Ink   #103b15 → FIT Blue  #0570c7（明るい面の見出し・リンク）
+ *   Lemon Zest   #f7ea48 → FIT Sky   #01a2e6（唯一のアクセント：CTA・大見出し）
+ *   Warm Cream   #fcf9f0 → FIT Paper #f2f7f9（明るいセクション）
+ *   Sage Mist    #dbe2dc → FIT Mist  #c8cfd4（罫線）
+ */
+:root {
+  color-scheme: light;
+
+  /* Colors */
+  --color-navy: #001242;
+  --color-blue: #0570c7;
+  --color-sky: #01a2e6;
+  --color-paper: #f2f7f9;
+  --color-mist: #c8cfd4;
+  --color-white: #ffffff;
+  --color-alert: #e60057; /* FIT マゼンタ。アレルゲン「含む」の表示にだけ使う */
+
+  /* Roles */
+  --surface-canvas: var(--color-navy);
+  --surface-panel: var(--color-paper);
+  --surface-card: var(--color-white);
+  --text-on-dark: var(--color-paper);
+  --text-on-light: var(--color-navy);
+  --text-muted: #4a5a6e;
+  --accent-on-dark: var(--color-sky);
+  --accent-on-light: var(--color-blue);
+  --border: var(--color-mist);
+
+  /* Typography — VenusCom の代替として DM Sans、和文は Noto Sans JP */
+  --font-sans: 'DM Sans', 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', 'PingFang SC', 'Apple SD Gothic Neo',
+    'Malgun Gothic', 'Segoe UI', Roboto, sans-serif;
+
+  --text-caption: 14px;
+  --leading-caption: 1.45;
+  --tracking-caption: 0.84px;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.6;
+  --tracking-body-sm: 0.64px;
+  --text-body-lg: 19px;
+  --leading-body-lg: 1.5;
+  --tracking-body-lg: 0.4px;
+  --text-subheading: 26px;
+  --text-heading-sm: 30px;
+  --text-heading: 36px;
+  --text-heading-lg: 46px;
+  --text-display: 68px;
+  --text-display-xl: 75px;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --gutter: 16px;
+
+  /* Radius — ほぼ角丸なし（円形ボタンのみ 40px） */
+  --radius-cards: 0px;
+  --radius-badges: 1px;
+  --radius-inputs: 1px;
+  --radius-buttons: 1px;
+  --radius-circular: 40px;
+}
+
+@media (min-width: 720px) {
+  :root { --gutter: 30px; }
+}

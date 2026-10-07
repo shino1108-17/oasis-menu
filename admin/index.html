@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>OASIS 管理画面</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2301a2e6'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial' font-size='16' font-weight='700' fill='%23001242'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+  <header class="a-header">
+    <div class="a-wrap a-header__inner">
+      <div class="a-brand">OASIS <span>管理画面</span> <em id="demo-badge" hidden>デモモード</em></div>
+      <div class="a-header__actions">
+        <a class="a-btn a-btn--ghost-dark" href="../" target="_blank" rel="noopener">公開サイトを見る ↗</a>
+        <button class="a-btn a-btn--ghost-dark" id="logout" hidden>ログアウト</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ログイン -->
+  <main id="login-view" class="a-wrap a-login" hidden>
+    <h1>ログイン</h1>
+    <p class="a-muted">管理者として登録されたアカウントでログインしてください。</p>
+    <form id="login-form" class="a-stack">
+      <label class="a-field"><span>メールアドレス</span><input type="email" name="email" autocomplete="username" required></label>
+      <label class="a-field"><span>パスワード</span><input type="password" name="password" autocomplete="current-password" required></label>
+      <button class="a-btn a-btn--primary" type="submit">ログイン</button>
+      <p class="a-error" id="login-error" role="alert"></p>
+    </form>
+  </main>
+
+  <!-- 管理本体 -->
+  <main id="app-view" hidden>
+    <div class="a-demo-note" id="demo-note" hidden>
+      <div class="a-wrap">
+        <strong>デモモードで動作中：</strong>Supabase が未設定のため、編集内容はこのブラウザの中にだけ保存されます（同じブラウザで開いた公開サイトには反映されます）。
+        本番運用の手順は README.md を参照してください。
+      </div>
+    </div>
+
+    <nav class="a-tabs a-wrap" role="tablist">
+      <button role="tab" data-tab="menu" aria-selected="true">メニュー</button>
+      <button role="tab" data-tab="settings" aria-selected="false">サイトの文言・画像</button>
+      <button role="tab" data-tab="import" aria-selected="false">Excel取り込み</button>
+      <button role="tab" data-tab="qr" aria-selected="false">QRコード</button>
+      <button role="tab" data-tab="backup" aria-selected="false">バックアップ</button>
+    </nav>
+
+    <!-- メニュー一覧 -->
+    <section class="a-wrap a-panel" data-panel="menu">
+      <div class="a-panel__head">
+        <div>
+          <h1>メニュー</h1>
+          <p class="a-muted">写真・名前・説明・アレルゲン・価格を編集できます。「表示」を外すと公開サイトに出なくなります。</p>
+        </div>
+        <button class="a-btn a-btn--primary" id="add-item">＋ メニューを追加</button>
+      </div>
+      <div class="a-table-wrap">
+        <table class="a-table">
+          <thead><tr><th>写真</th><th>メニュー名</th><th>分類</th><th>価格</th><th>表示</th><th>売り切れ</th><th>並び順</th><th></th></tr></thead>
+          <tbody id="item-rows"><tr><td colspan="8" class="a-muted">読み込み中…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- サイト設定 -->
+    <section class="a-wrap a-panel" data-panel="settings" hidden>
+      <div class="a-panel__head">
+        <div>
+          <h1>サイトの文言・画像</h1>
+          <p class="a-muted">トップの見出し・お知らせ・営業時間・注意書きを言語ごとに編集できます。空欄の言語は英語（なければ日本語）で表示されます。</p>
+        </div>
+      </div>
+      <form id="settings-form" class="a-stack">
+        <div class="a-grid2">
+          <label class="a-field"><span>大見出し（英字推奨）</span><input name="hero_title" maxlength="20"></label>
+          <div class="a-field">
+            <span>トップ画像（任意）</span>
+            <div class="a-image-input" id="hero-image-input"></div>
+          </div>
+        </div>
+        <div id="settings-langs"></div>
+        <div class="a-actions"><button class="a-btn a-btn--primary" type="submit">保存する</button><span class="a-status" id="settings-status"></span></div>
+      </form>
+    </section>
+
+    <!-- Excel 取り込み -->
+    <section class="a-wrap a-panel" data-panel="import" hidden>
+      <div class="a-panel__head">
+        <div>
+          <h1>Excel取り込み</h1>
+          <p class="a-muted">「オアシス アレルギー一覧」と同じ形式のExcelを選ぶと、商品名（日本語）が一致するメニューのアレルゲンを更新し、新しい商品を追加します。写真・翻訳・価格はそのまま残ります。</p>
+        </div>
+      </div>
+      <label class="a-drop">
+        <input type="file" id="xlsx-file" accept=".xlsx,.xls">
+        <strong>Excelファイルを選択</strong><span class="a-muted">.xlsx（〇＝含む、△＝コンタミ）</span>
+      </label>
+      <div id="import-preview"></div>
+    </section>
+
+    <!-- QR -->
+    <section class="a-wrap a-panel" data-panel="qr" hidden>
+      <div class="a-panel__head">
+        <div>
+          <h1>QRコード</h1>
+          <p class="a-muted">オアシスに掲示するQRコードを作成・印刷できます。</p>
+        </div>
+      </div>
+      <div class="a-grid2">
+        <div class="a-stack">
+          <label class="a-field"><span>公開サイトのURL</span><input id="qr-url" type="url"></label>
+          <label class="a-field"><span>最初に表示する言語</span>
+            <select id="qr-lang"><option value="">利用者の端末の言語（おすすめ）</option></select>
+          </label>
+          <div class="a-actions">
+            <button class="a-btn a-btn--primary" id="qr-print" type="button">ポスターを印刷</button>
+            <button class="a-btn" id="qr-download" type="button">PNGを保存</button>
+          </div>
+        </div>
+        <div class="qr-poster" id="qr-poster">
+          <p class="qr-poster__eyebrow">FIT CAFETERIA</p>
+          <p class="qr-poster__title">OASIS<br><span>MENU</span></p>
+          <div class="qr-poster__code" id="qr-code"></div>
+          <p class="qr-poster__text">メニュー・アレルギー情報<br>Menu &amp; allergy info · 菜单与过敏原 · 메뉴・알레르기 · Thực đơn · Menu &amp; alergi</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- バックアップ -->
+    <section class="a-wrap a-panel" data-panel="backup" hidden>
+      <div class="a-panel__head">
+        <div>
+          <h1>バックアップ</h1>
+          <p class="a-muted">全メニューと設定をJSONファイルで保存・復元できます。</p>
+        </div>
+      </div>
+      <div class="a-actions">
+        <button class="a-btn a-btn--primary" id="export-json">JSONを書き出す</button>
+        <label class="a-btn">JSONから復元<input type="file" id="import-json" accept=".json" hidden></label>
+        <button class="a-btn a-btn--danger" id="demo-reset" hidden>デモデータを初期状態に戻す</button>
+      </div>
+      <p class="a-status" id="backup-status"></p>
+    </section>
+  </main>
+
+  <!-- 編集ダイアログ -->
+  <dialog class="a-dialog" id="edit-dialog">
+    <form id="edit-form" method="dialog">
+      <header class="a-dialog__head">
+        <h2 id="edit-title">メニューを編集</h2>
+        <button type="button" class="a-icon-btn" data-close aria-label="閉じる">✕</button>
+      </header>
+      <div class="a-dialog__body a-stack">
+        <div class="a-grid2">
+          <div class="a-field"><span>写真</span><div class="a-image-input" id="item-image-input"></div></div>
+          <div class="a-stack">
+            <label class="a-field"><span>分類</span><select name="category" id="category-select"></select></label>
+            <label class="a-field"><span>価格（円・任意）</span><input name="price" type="number" min="0" step="10" inputmode="numeric"></label>
+            <label class="a-check"><input type="checkbox" name="is_visible"> 公開サイトに表示する</label>
+            <label class="a-check"><input type="checkbox" name="is_sold_out"> 売り切れ</label>
+          </div>
+        </div>
+
+        <fieldset class="a-fieldset">
+          <legend>名前・説明（言語ごと）</legend>
+          <p class="a-muted a-small">日本語は必須です。他の言語は空欄でもOK（英語→日本語の順で代わりに表示されます）。「翻訳を確認」でGoogle翻訳を開けます。</p>
+          <div id="lang-fields"></div>
+        </fieldset>
+
+        <fieldset class="a-fieldset">
+          <legend>アレルゲン・原材料</legend>
+          <p class="a-muted a-small">〇＝含む　△＝コンタミ（製造工程で混入の可能性）</p>
+          <div class="a-allergens" id="allergen-fields"></div>
+        </fieldset>
+      </div>
+      <footer class="a-dialog__foot">
+        <button type="button" class="a-btn a-btn--danger" id="delete-item">削除</button>
+        <span class="a-status" id="edit-status"></span>
+        <button type="button" class="a-btn" data-close>キャンセル</button>
+        <button type="submit" class="a-btn a-btn--primary" value="save">保存する</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div class="a-toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+  <script type="module" src="../assets/js/admin.js"></script>
+</body>
+</html>
