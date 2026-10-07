@@ -6,6 +6,17 @@
 - **工夫**：オアシスにQRコードを掲示し、学外の人もログインなしで見られる。アレルゲンや宗教・食習慣で絞り込み検索ができる
 - **AIの活用**：サイトの作成と、メニュー名・説明・画面文言の翻訳（下書き）にAI（Claude）を使用
 
+## 公開中のURL
+
+| | URL |
+|---|---|
+| 公開サイト | https://shino1108-17.github.io/oasis-menu/ |
+| 管理サイト | https://shino1108-17.github.io/oasis-menu/admin/ |
+| ソースコード | https://github.com/shino1108-17/oasis-menu |
+| Supabase | https://supabase.com/dashboard/project/ycjxncuhelifggedkzsn （組織「FIT OASIS」/ 東京リージョン / 無料プラン） |
+
+データベースのパスワードは、このフォルダの `.secrets/supabase-db-password.txt` にあります（Git には含めていません）。
+
 ## 構成
 
 | ページ | URL | 内容 |
