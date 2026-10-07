@@ -119,16 +119,36 @@
           <label class="a-field"><span>最初に表示する言語</span>
             <select id="qr-lang"><option value="">利用者の端末の言語（おすすめ）</option></select>
           </label>
+          <fieldset class="a-fieldset">
+            <legend>ポスターの文字</legend>
+            <form id="poster-form" class="a-stack">
+              <label class="a-field"><span>上の小見出し</span><input name="eyebrow" maxlength="40"></label>
+              <div class="a-grid2">
+                <label class="a-field"><span>大見出し 1行目</span><input name="title1" maxlength="20"></label>
+                <label class="a-field"><span>大見出し 2行目（水色）</span><input name="title2" maxlength="20"></label>
+              </div>
+              <label class="a-field"><span>下の説明文（改行できます）</span><textarea name="text" rows="4"></textarea></label>
+              <label class="a-range"><span>大見出しの大きさ</span><input type="range" name="titleScale" min="50" max="150" step="5"><output></output></label>
+              <label class="a-range"><span>QRコードの大きさ</span><input type="range" name="qrScale" min="50" max="130" step="5"><output></output></label>
+              <label class="a-range"><span>説明文の大きさ</span><input type="range" name="textScale" min="60" max="200" step="5"><output></output></label>
+              <div class="a-actions">
+                <button class="a-btn a-btn--primary" type="submit">文字を保存</button>
+                <button class="a-btn" type="button" id="poster-reset">初期値に戻す</button>
+                <span class="a-status" id="poster-status"></span>
+              </div>
+            </form>
+          </fieldset>
           <div class="a-actions">
             <button class="a-btn a-btn--primary" id="qr-print" type="button">ポスターを印刷</button>
-            <button class="a-btn" id="qr-download" type="button">PNGを保存</button>
+            <button class="a-btn" id="poster-download" type="button">ポスターをPNG保存</button>
+            <button class="a-btn" id="qr-download" type="button">QRコードだけPNG保存</button>
           </div>
         </div>
         <div class="qr-poster" id="qr-poster">
-          <p class="qr-poster__eyebrow">FIT CAFETERIA</p>
-          <p class="qr-poster__title">OASIS<br><span>MENU</span></p>
+          <p class="qr-poster__eyebrow" id="poster-eyebrow"></p>
+          <p class="qr-poster__title"><span id="poster-title1"></span><span id="poster-title2"></span></p>
           <div class="qr-poster__code" id="qr-code"></div>
-          <p class="qr-poster__text">メニュー・アレルギー情報<br>Menu &amp; allergy info · 菜单与过敏原 · 메뉴・알레르기 · Thực đơn · Menu &amp; alergi</p>
+          <p class="qr-poster__text" id="poster-text"></p>
         </div>
       </div>
     </section>

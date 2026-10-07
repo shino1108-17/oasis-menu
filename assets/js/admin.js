@@ -88,6 +88,10 @@ async function reload() {
   [items, settings] = await Promise.all([db.loadMenu({ includeHidden: true }), db.loadSettings()]);
   renderRows();
   renderSettings();
+  if (!posterDirty) {
+    poster = { ...POSTER_DEFAULTS, ...(settings.qr_poster || {}) };
+    renderPosterForm();
+  }
 }
 
 function bindRows() {
@@ -346,6 +350,18 @@ function bindImport() {
 }
 
 // ───────── QR ─────────
+const POSTER_DEFAULTS = {
+  eyebrow: 'FIT CAFETERIA',
+  title1: 'OASIS',
+  title2: 'MENU',
+  text: 'メニュー・アレルギー情報\nMenu & allergy info · 菜单与过敏原 · 메뉴・알레르기 · Thực đơn · Menu & alergi',
+  titleScale: 100,
+  qrScale: 100,
+  textScale: 100,
+};
+let poster = { ...POSTER_DEFAULTS };
+let posterDirty = false;
+
 function publicUrl() {
   return new URL('../', location.href).href;
 }
@@ -360,6 +376,117 @@ function renderQr() {
   new window.QRCode(holder, { text: url.href, width: 512, height: 512, colorDark: '#001242', colorLight: '#ffffff', correctLevel: window.QRCode.CorrectLevel.M });
 }
 
+function applyPoster() {
+  $('#poster-eyebrow').textContent = poster.eyebrow;
+  $('#poster-title1').textContent = poster.title1;
+  $('#poster-title2').textContent = poster.title2;
+  $('#poster-text').textContent = poster.text;
+  const el = $('#qr-poster');
+  el.style.setProperty('--title-scale', poster.titleScale / 100);
+  el.style.setProperty('--qr-scale', poster.qrScale / 100);
+  el.style.setProperty('--text-scale', poster.textScale / 100);
+  $$('#poster-form .a-range').forEach((r) => { $('output', r).textContent = `${$('input', r).value}%`; });
+}
+
+function renderPosterForm() {
+  const f = $('#poster-form');
+  for (const k of Object.keys(POSTER_DEFAULTS)) f[k].value = poster[k];
+  applyPoster();
+}
+
+function readPosterForm() {
+  const f = $('#poster-form');
+  return {
+    eyebrow: f.eyebrow.value.trim(),
+    title1: f.title1.value.trim(),
+    title2: f.title2.value.trim(),
+    text: f.text.value.trim(),
+    titleScale: Number(f.titleScale.value),
+    qrScale: Number(f.qrScale.value),
+    textScale: Number(f.textScale.value),
+  };
+}
+
+/** テキストを指定幅で折り返す（英単語は途中で切らない） */
+function wrapText(g, text, maxWidth) {
+  const out = [];
+  for (const para of text.split('\n')) {
+    const tokens = para.match(/[\p{Script=Latin}\p{Script=Hangul}\p{N}&'’.,:;!?()\-]+|\s+|./gu) || [''];
+    let line = '';
+    for (const t of tokens) {
+      if (line && g.measureText(line + t).width > maxWidth) {
+        out.push(line.trimEnd());
+        line = t.trimStart();
+      } else {
+        line += t;
+      }
+    }
+    out.push(line);
+  }
+  return out;
+}
+
+/** ポスターを A4 縦（150dpi相当）の PNG として描く */
+async function drawPoster() {
+  await document.fonts.ready;
+  const W = 1240, H = 1754, margin = 120;
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const g = c.getContext('2d');
+  const font = getComputedStyle(document.body).fontFamily;
+  g.fillStyle = '#001242';
+  g.fillRect(0, 0, W, H);
+  g.textAlign = 'center';
+
+  const eyeSize = 34;
+  let titleSize = 200 * poster.titleScale / 100;
+  const titles = [poster.title1, poster.title2].filter(Boolean);
+  g.font = `400 ${titleSize}px ${font}`;
+  const widest = Math.max(0, ...titles.map((t) => g.measureText(t).width + t.length * titleSize * 0.08));
+  if (widest > W - margin) titleSize *= (W - margin) / widest;
+  const qrBox = Math.min(W - margin * 2, 620 * poster.qrScale / 100);
+  const textSize = 38 * poster.textScale / 100, lineH = textSize * 1.7;
+  g.font = `400 ${textSize}px ${font}`;
+  const lines = poster.text ? wrapText(g, poster.text, W - margin * 2) : [];
+
+  const gap = 64;
+  const total = (poster.eyebrow ? eyeSize + 32 : 0) + titles.length * titleSize * 1.05 + (titles.length ? gap : 0)
+    + qrBox + (lines.length ? gap + lines.length * lineH : 0);
+  let y = (H - total) / 2;
+
+  const text = (str, size, weight, color, spacing) => {
+    g.font = `${weight} ${size}px ${font}`;
+    g.fillStyle = color;
+    g.letterSpacing = `${spacing}px`;
+    g.fillText(str, W / 2 + spacing / 2, y);
+  };
+  if (poster.eyebrow) { y += eyeSize; text(poster.eyebrow, eyeSize, 600, '#01a2e6', eyeSize * 0.3); y += 32; }
+  titles.forEach((t, i) => {
+    y += titleSize * 0.92;
+    text(t, titleSize, 400, i === 1 || titles.length === 1 && !poster.title1 ? '#01a2e6' : '#f2f7f9', titleSize * 0.08);
+    y += titleSize * 0.13;
+  });
+  if (titles.length) y += gap;
+  g.fillStyle = '#ffffff';
+  g.fillRect((W - qrBox) / 2, y, qrBox, qrBox);
+  const qr = $('#qr-code canvas');
+  const pad = qrBox * 0.06;
+  if (qr) g.drawImage(qr, (W - qrBox) / 2 + pad, y + pad, qrBox - pad * 2, qrBox - pad * 2);
+  y += qrBox;
+  if (lines.length) {
+    y += gap;
+    for (const l of lines) { y += lineH; g.save(); y -= (lineH - textSize) / 2; text(l, textSize, 400, '#f2f7f9', 0); y += (lineH - textSize) / 2; g.restore(); }
+  }
+  return c;
+}
+
+function download(href, name) {
+  const a = document.createElement('a');
+  a.href = href;
+  a.download = name;
+  a.click();
+}
+
 function bindQr() {
   $('#qr-url').value = publicUrl();
   $('#qr-lang').insertAdjacentHTML('beforeend', LANGS.map((l) => `<option value="${l.code}">${esc(l.label)}</option>`).join(''));
@@ -368,11 +495,34 @@ function bindQr() {
   $('#qr-print').addEventListener('click', () => { document.body.classList.add('print-qr'); print(); document.body.classList.remove('print-qr'); });
   $('#qr-download').addEventListener('click', () => {
     const c = $('#qr-code canvas');
-    if (!c) return;
-    const a = document.createElement('a');
-    a.href = c.toDataURL('image/png');
-    a.download = 'oasis-menu-qr.png';
-    a.click();
+    if (c) download(c.toDataURL('image/png'), 'oasis-menu-qr.png');
+  });
+  $('#poster-download').addEventListener('click', async () => {
+    const c = await drawPoster();
+    download(c.toDataURL('image/png'), 'oasis-menu-poster.png');
+  });
+
+  const form = $('#poster-form');
+  renderPosterForm();
+  form.addEventListener('input', () => {
+    poster = readPosterForm();
+    posterDirty = true;
+    $('#poster-status').textContent = '未保存の変更があります';
+    applyPoster();
+  });
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    poster = readPosterForm();
+    await run(() => db.saveSettings({ qr_poster: poster }), '保存しました');
+    settings.qr_poster = poster;
+    posterDirty = false;
+    $('#poster-status').textContent = `保存しました（${new Date().toLocaleTimeString()}）`;
+  });
+  $('#poster-reset').addEventListener('click', () => {
+    poster = { ...POSTER_DEFAULTS };
+    posterDirty = true;
+    renderPosterForm();
+    $('#poster-status').textContent = '初期値に戻しました（「文字を保存」で確定）';
   });
 }
 
