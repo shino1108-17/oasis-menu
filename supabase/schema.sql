@@ -66,5 +66,6 @@ create policy "menu images write"  on storage.objects for insert with check (buc
 create policy "menu images update" on storage.objects for update using (bucket_id = 'menu-images' and public.is_admin());
 create policy "menu images delete" on storage.objects for delete using (bucket_id = 'menu-images' and public.is_admin());
 
--- ───────── 管理者の登録（メールアドレスを書き換えて実行）─────────
--- insert into public.admins (email) values ('your-name@example.com');
+-- ───────── 管理者の登録 ─────────
+-- 管理サイトはパスワードだけでログインする方式で、内部では config.js の ADMIN_EMAIL を使う。
+insert into public.admins (email) values ('admin@oasis-menu.example.com') on conflict do nothing;

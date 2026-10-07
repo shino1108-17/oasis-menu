@@ -26,10 +26,10 @@
   <!-- ログイン -->
   <main id="login-view" class="a-wrap a-login" hidden>
     <h1>ログイン</h1>
-    <p class="a-muted">管理者として登録されたアカウントでログインしてください。</p>
+    <p class="a-muted">管理者用のパスワードを入力してください。</p>
     <form id="login-form" class="a-stack">
-      <label class="a-field"><span>メールアドレス</span><input type="email" name="email" autocomplete="username" required></label>
-      <label class="a-field"><span>パスワード</span><input type="password" name="password" autocomplete="current-password" required></label>
+      <input type="text" name="username" autocomplete="username" hidden>
+      <label class="a-field"><span>パスワード</span><input type="password" name="password" autocomplete="current-password" required autofocus></label>
       <button class="a-btn a-btn--primary" type="submit">ログイン</button>
       <p class="a-error" id="login-error" role="alert"></p>
     </form>
