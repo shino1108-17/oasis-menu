@@ -373,7 +373,7 @@ function renderQr() {
   const url = new URL($('#qr-url').value || publicUrl());
   const lang = $('#qr-lang').value;
   if (lang) url.searchParams.set('lang', lang);
-  new window.QRCode(holder, { text: url.href, width: 512, height: 512, colorDark: '#001242', colorLight: '#ffffff', correctLevel: window.QRCode.CorrectLevel.M });
+  new window.QRCode(holder, { text: url.href, width: 512, height: 512, colorDark: '#0077b0', colorLight: '#ffffff', correctLevel: window.QRCode.CorrectLevel.M });
 }
 
 function applyPoster() {
@@ -434,14 +434,17 @@ async function drawPoster() {
   c.width = W; c.height = H;
   const g = c.getContext('2d');
   const font = getComputedStyle(document.body).fontFamily;
-  g.fillStyle = '#001242';
+  g.fillStyle = '#ffffff';
   g.fillRect(0, 0, W, H);
+  g.fillStyle = '#00a1e5';
+  g.fillRect(0, 0, W, 36);
+  g.fillRect(0, H - 36, W, 36);
   g.textAlign = 'center';
 
   const eyeSize = 34;
   let titleSize = 200 * poster.titleScale / 100;
   const titles = [poster.title1, poster.title2].filter(Boolean);
-  g.font = `400 ${titleSize}px ${font}`;
+  g.font = `700 ${titleSize}px ${font}`;
   const widest = Math.max(0, ...titles.map((t) => g.measureText(t).width + t.length * titleSize * 0.08));
   if (widest > W - margin) titleSize *= (W - margin) / widest;
   const qrBox = Math.min(W - margin * 2, 620 * poster.qrScale / 100);
@@ -460,22 +463,21 @@ async function drawPoster() {
     g.letterSpacing = `${spacing}px`;
     g.fillText(str, W / 2 + spacing / 2, y);
   };
-  if (poster.eyebrow) { y += eyeSize; text(poster.eyebrow, eyeSize, 600, '#01a2e6', eyeSize * 0.3); y += 32; }
+  if (poster.eyebrow) { y += eyeSize; text(poster.eyebrow, eyeSize, 600, '#6b6b6b', eyeSize * 0.3); y += 32; }
   titles.forEach((t, i) => {
     y += titleSize * 0.92;
-    text(t, titleSize, 400, i === 1 || titles.length === 1 && !poster.title1 ? '#01a2e6' : '#f2f7f9', titleSize * 0.08);
+    const second = i === 1 || (titles.length === 1 && !poster.title1);
+    text(t, titleSize, second ? 300 : 700, second ? '#6b6b6b' : '#00a1e5', titleSize * 0.08);
     y += titleSize * 0.13;
   });
   if (titles.length) y += gap;
-  g.fillStyle = '#ffffff';
-  g.fillRect((W - qrBox) / 2, y, qrBox, qrBox);
   const qr = $('#qr-code canvas');
-  const pad = qrBox * 0.06;
+  const pad = 0;
   if (qr) g.drawImage(qr, (W - qrBox) / 2 + pad, y + pad, qrBox - pad * 2, qrBox - pad * 2);
   y += qrBox;
   if (lines.length) {
     y += gap;
-    for (const l of lines) { y += lineH; g.save(); y -= (lineH - textSize) / 2; text(l, textSize, 400, '#f2f7f9', 0); y += (lineH - textSize) / 2; g.restore(); }
+    for (const l of lines) { y += lineH; g.save(); y -= (lineH - textSize) / 2; text(l, textSize, 400, '#333333', 0); y += (lineH - textSize) / 2; g.restore(); }
   }
   return c;
 }
