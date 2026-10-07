@@ -6,9 +6,5 @@
 export const SUPABASE_URL = 'https://ycjxncuhelifggedkzsn.supabase.co';
 export const SUPABASE_ANON_KEY = 'sb_publishable_C6DPViqooq5GAPki4IzPug_qCCUl4UZ';
 
-// 管理サイトのログイン用アカウント（内部用の固定アドレス。メールは送信されません）。
-// 管理サイトではパスワードだけを入力します。
-export const ADMIN_EMAIL = 'admin@oasis-menu.example.com';
-
 // 画像を保存するストレージのバケット名（schema.sql と合わせる）
 export const IMAGE_BUCKET = 'menu-images';

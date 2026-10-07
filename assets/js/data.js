@@ -1,5 +1,5 @@
 // データの読み書き。Supabase が設定されていればそちらを、無ければブラウザ内のデモデータを使う。
-import { SUPABASE_URL, SUPABASE_ANON_KEY, IMAGE_BUCKET, ADMIN_EMAIL } from './config.js';
+import { SUPABASE_URL, SUPABASE_ANON_KEY, IMAGE_BUCKET } from './config.js';
 
 export const isDemo = !SUPABASE_URL || !SUPABASE_ANON_KEY;
 
@@ -68,9 +68,9 @@ export async function getSession() {
   return data.session;
 }
 
-export async function signIn(password) {
+export async function signIn(email, password) {
   const sb = await supabase();
-  const { error } = await sb.auth.signInWithPassword({ email: ADMIN_EMAIL, password });
+  const { error } = await sb.auth.signInWithPassword({ email: email.trim(), password });
   if (error) throw error;
   const { data, error: e2 } = await sb.rpc('is_admin');
   if (e2) throw e2;

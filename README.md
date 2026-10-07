@@ -15,7 +15,7 @@
 | ソースコード | https://github.com/shino1108-17/oasis-menu |
 | Supabase | https://supabase.com/dashboard/project/ycjxncuhelifggedkzsn （組織「FIT OASIS」/ 東京リージョン / 無料プラン） |
 
-管理サイトはパスワードだけでログインします。パスワードを変えたいときは、Supabase の **Authentication → Users** で `admin@oasis-menu.example.com` を選んで変更してください。
+管理サイトには、メールアドレス `admin@oasis-menu.example.com` とパスワードでログインします（内部用のアドレスなので、メールは届きません）。パスワードを変えたいときは、Supabase の **Authentication → Users** でこのユーザーを選んで変更してください。管理者を増やすときは、ユーザーを追加して `admins` テーブルにそのメールアドレスを登録します。
 
 データベースのパスワードは、このフォルダの `.secrets/supabase-db-password.txt` にあります（Git には含めていません）。
 
@@ -73,11 +73,11 @@ python3 -m http.server 8765
 1. https://supabase.com で無料アカウントを作り、「New project」でプロジェクトを作成（Region は Tokyo）
 2. 左メニューの **SQL Editor** で `supabase/schema.sql` の中身を貼り付けて実行
 3. 続けて `supabase/seed.sql` を実行（Excel の15品が入ります）
-4. 管理サイトは **パスワードだけ** でログインします（内部では `assets/js/config.js` の `ADMIN_EMAIL`＝`admin@oasis-menu.example.com` という固定アドレスを使います。メールは送られません）。SQL Editor で次を実行してください。
+4. 管理者のメールアドレスを登録します（例は内部用のアドレスで、メールは届きません。実在のアドレスでも構いません）。SQL Editor で次を実行してください。
    ```sql
    insert into public.admins (email) values ('admin@oasis-menu.example.com');
    ```
-5. **Authentication → Users → Add user → Create new user** で、Email に `admin@oasis-menu.example.com`、Password に管理者用のパスワードを入れ、「Auto Confirm User」にチェックして作成
+5. **Authentication → Users → Add user → Create new user** で、Email に手順4と同じアドレス、Password に管理者用のパスワードを入れ、「Auto Confirm User」にチェックして作成
 6. **Authentication → Sign In / Providers** で「Allow new users to sign up」をオフにする（知らない人がアカウントを作れないようにするため）
 7. **Project Settings → API** にある Project URL と anon key（または Publishable key）を `assets/js/config.js` に貼り付ける
 

@@ -1,6 +1,5 @@
 import { LANGS, ALLERGENS, CATEGORIES } from './i18n.js';
 import * as db from './data.js';
-import { ADMIN_EMAIL } from './config.js';
 import { esc } from './util.js';
 
 const $ = (s, root = document) => root.querySelector(s);
@@ -432,17 +431,16 @@ async function init() {
   $('#demo-note').hidden = !db.isDemo;
   bindTabs(); bindRows(); bindEditor(); bindSettings(); bindImport(); bindQr(); bindBackup();
 
-  $('#login-form').username.value = ADMIN_EMAIL;
   $('#logout').addEventListener('click', async () => { await db.signOut(); location.reload(); });
   $('#login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const f = e.target;
     $('#login-error').textContent = '';
     try {
-      await db.signIn(f.password.value);
+      await db.signIn(f.email.value, f.password.value);
       await showApp();
     } catch (err) {
-      $('#login-error').textContent = err.message === 'Invalid login credentials' ? 'パスワードが違います' : err.message;
+      $('#login-error').textContent = err.message === 'Invalid login credentials' ? 'メールアドレスまたはパスワードが違います' : err.message;
     }
   });
 
