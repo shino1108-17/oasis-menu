@@ -4,3 +4,4 @@ __pycache__/
 *.xlsx
 .secrets/
 supabase/.temp/
+資料/

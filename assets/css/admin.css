@@ -58,7 +58,7 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .a-status { font-size: 13px; color: var(--text-muted); }
 
 /* Fields */
-.a-field { display: grid; gap: 6px; }
+.a-field { display: grid; gap: 6px; align-content: start; }
 .a-field > span { font-size: 13px; font-weight: 600; }
 .a-field input, .a-field select, .a-lang-row input, .a-lang-row textarea, .a-lang-line textarea {
   width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius-inputs); background: var(--color-white);
