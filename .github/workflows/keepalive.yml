@@ -1,0 +1,28 @@
+# Supabase 無料プランの自動停止（約1週間アクセスがないと停止）を防ぐため、
+# 3日おきにメニューのデータを1件だけ読みに行く。
+# 読み込みに失敗した（＝停止している）ときは、この実行が「失敗」になり、GitHub からメールで通知が届く。
+name: Supabase keepalive
+
+on:
+  schedule:
+    - cron: '17 0 */3 * *' # 3日おき 9:17（日本時間）
+  workflow_dispatch: # Actions 画面から手動でも実行できる
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: メニューのデータを1件読む
+        run: |
+          URL=$(grep -oE "SUPABASE_URL = '[^']+'" assets/js/config.js | cut -d"'" -f2)
+          KEY=$(grep -oE "SUPABASE_ANON_KEY = '[^']+'" assets/js/config.js | cut -d"'" -f2)
+          status=$(curl -s -o body.json -w '%{http_code}' --retry 3 --retry-delay 10 \
+            "$URL/rest/v1/menu_items?select=id&limit=1" -H "apikey: $KEY")
+          echo "HTTP $status"
+          cat body.json; echo
+          if [ "$status" != "200" ]; then
+            echo "::error::Supabase に接続できません。停止している場合は https://supabase.com/dashboard から Restore してください。"
+            exit 1
+          fi
